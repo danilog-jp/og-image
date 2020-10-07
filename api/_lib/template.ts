@@ -7,7 +7,6 @@ const twemoji = require('twemoji');
 const twOptions = { folder: 'svg', ext: '.svg' };
 const emojify = (text: string) => twemoji.parse(text, twOptions);
 
-const notoSansBlack = readFileSync(`${__dirname}/../_fonts/NotoSansJP-Black.otf`).toString('base64');
 const notoSansBold = readFileSync(`${__dirname}/../_fonts/NotoSansJP-Bold.otf`).toString('base64');
 
 function getCss(theme: string, fontSize: string) {
@@ -26,13 +25,6 @@ function getCss(theme: string, fontSize: string) {
         font-style: normal;
         font-weight: normal;
         src: url(data:font/otf;charset=utf-8;base64,${notoSansBold})  format("opentype");
-    }
-      
-    @font-face {
-        font-family: 'Noto Sans JP';
-        font-style: normal;
-        font-weight: bold;
-        src: url(data:font/otf;charset=utf-8;base64,${notoSansBlack})  format("opentype");
     }
 
     body {
@@ -82,10 +74,6 @@ function getCss(theme: string, fontSize: string) {
         width: 1em;
         margin: 0 .05em 0 .1em;
         vertical-align: -0.1em;
-    }
-    
-    strong {
-        font-weight: bold;
     }
     
     .heading {
