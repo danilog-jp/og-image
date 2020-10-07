@@ -10,10 +10,12 @@ const emojify = (text: string) => twemoji.parse(text, twOptions);
 const rglr = readFileSync(`${__dirname}/../_fonts/Inter-Regular.woff2`).toString('base64');
 const bold = readFileSync(`${__dirname}/../_fonts/Inter-Bold.woff2`).toString('base64');
 const mono = readFileSync(`${__dirname}/../_fonts/Vera-Mono.woff2`).toString('base64');
+const notoSansBlack = readFileSync(`${__dirname}/../_fonts/NotoSansJP-Black.otf`).toString('base64');
+const notoSansBold = readFileSync(`${__dirname}/../_fonts/NotoSansJP-Bold.otf`).toString('base64');
 
 function getCss(theme: string, fontSize: string) {
     let background = 'white';
-    let foreground = 'black';
+    let foreground = '#585858';
     let radial = 'lightgray';
 
     if (theme === 'dark') {
@@ -41,6 +43,20 @@ function getCss(theme: string, fontSize: string) {
         font-style: normal;
         font-weight: normal;
         src: url(data:font/woff2;charset=utf-8;base64,${mono})  format("woff2");
+      }
+      
+    @font-face {
+        font-family: 'Noto Sans JP';
+        font-style: normal;
+        font-weight: normal;
+        src: url(data:font/otf;charset=utf-8;base64,${notoSansBold})  format("opentype");
+      }
+      
+    @font-face {
+        font-family: 'Noto Sans JP';
+        font-style: normal;
+        font-weight: bold;
+        src: url(data:font/otf;charset=utf-8;base64,${notoSansBlack})  format("opentype");
       }
 
     body {
@@ -94,8 +110,12 @@ function getCss(theme: string, fontSize: string) {
         vertical-align: -0.1em;
     }
     
+    strong {
+        font-weight: bold;
+    }
+    
     .heading {
-        font-family: 'Inter', sans-serif;
+        font-family: 'Noto Sans JP', sans-serif;
         font-size: ${sanitizeHtml(fontSize)};
         font-style: normal;
         color: ${foreground};
@@ -131,7 +151,7 @@ export function getHtml(parsedReq: ParsedRequest) {
 </html>`;
 }
 
-function getImage(src: string, width ='auto', height = '225') {
+function getImage(src: string, width ='auto', height = '300') {
     return `<img
         class="logo"
         alt="Generated Image"
