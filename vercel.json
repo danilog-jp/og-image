@@ -1,6 +1,12 @@
 {
   "rewrites": [
-    { "source": "/(.+)", "destination": "/api" },
-    { "source": "/", "destination": "/api/ダニログ" }
+    { "source": "/(.+)", "destination": "/api" }
+  ],
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/%E3%83%80%E3%83%8B%E3%83%AD%E3%82%B0",
+      "permanent": false
+    }
   ]
 }
